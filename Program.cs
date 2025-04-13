@@ -75,9 +75,14 @@ namespace AirlineReservationConsoleSystem
             }
         }
 
-        public static void UpdateFlightDeparture()
+        static bool FindByCode(string code)
         {
-
+            foreach (var flight in flights)
+            {
+                if (flight.FlightCode == code)
+                    return true;
+            }
+            return false;
         }
 
         public static void CancelFlightBooking()
