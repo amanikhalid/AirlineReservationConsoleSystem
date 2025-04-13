@@ -85,9 +85,18 @@ namespace AirlineReservationConsoleSystem
             return false;
         }
 
-        public static void CancelFlightBooking()
+        static void UpdateFlightDeparture(ref DateTime departure)
         {
-
+            Console.Write("Enter new departure time (yyyy-MM-dd HH:mm): ");
+            if (DateTime.TryParse(Console.ReadLine(), out DateTime newTime))
+            {
+                departure = newTime;
+                Console.WriteLine("Departure time updated.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid time format.");
+            }
         }
 
         public static void BookFligh()
