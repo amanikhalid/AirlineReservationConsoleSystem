@@ -5,77 +5,36 @@ namespace AirlineReservationConsoleSystem
 {
     internal class Program
     {
-        static int choice; 
-        static void Main(string[] args)
-        {
-            DisplayWelcomeMessage();
+        static List<Flight> flights = new List<Flight>();
+        static List<Booking> bookings = new List<Booking>();
 
-            ///////////////
+        public static void Main(string[] args)
+        {
+            AddFlight("F11", "Nashville", "Denver", DateTime.Now.AddHours(4), 330);
+            AddFlight("F22", "Muscat", "Suhar", DateTime.Now.AddHours(1), 60);
+            StartSystem();
         }
 
-        public static void DisplayWelcomeMessage()
+        class Flight
         {
-            Console.WriteLine("Welcome to Airline Reservation Console System \n");
+            public string FlightCode;
+            public string FromCity;
+            public string ToCity;
+            public DateTime DepartureTime;
+            public int Duration;
         }
 
-        public static void ShowMainMenu(int choice)
+        class Booking
         {
-            while (true)
-            {
+            public string PassengerName;
+            public string FlightCode;
+            public string BookingID;
+        }
 
-                try //handle the exception if the user enter invalid input
-                {
-                    //Menu System
-                    Console.Clear();
-                    Console.WriteLine("Welcome to program menu \n");
-                    Console.WriteLine("Select a Program:");
-                    Console.WriteLine("1. Add Flight");
-                    Console.WriteLine("2. Display All Flights ");
-                    Console.WriteLine("3. Find Flight By Code");
-                    Console.WriteLine("4. Update Flight Departure");
-                    Console.WriteLine("5. Cancel Flight Booking");
-                    Console.WriteLine("6. Book Fligh");
-                    Console.WriteLine("7. Validate Flight Code");
-                    Console.WriteLine("8. Generate Booking ID");
-                    Console.WriteLine("9. Display Flight Details");
-                    Console.WriteLine("10. Search Bookings By Destination");
-                    Console.WriteLine("11. Calculate Fare");
-
-                    Console.Write("Enter your choice : ");
-                    choice = int.Parse(Console.ReadLine());
-                    switch (choice)
-                    {
-                        case 1: AddFLight(); break;
-                        case 2: DisplayAllFlights(); break;
-                        case 3: FindFlightByCode(); break;
-                        case 4: UpdateFlightDeparture(); break;
-                        case 5: CancelFlightBooking(); break;
-                        case 6: BookFligh(); break;
-                        case 7: ValidateFlightCode(); break;
-                        case 8: GenerateBookingID(); break;
-                        case 9: DisplayFlightDetails(); break;
-                        case 10: SearchBookingsByDestination(); break;
-                        case 11: CalculateFare(); break;
-
-                        case 12: return;
-
-                        default: Console.WriteLine("Invalid Choice! Try again."); break;
-                    }
-                    Console.WriteLine("Press any key  "); //ask user to press any key to continue
-                    Console.ReadLine(); //read the user input
-
-                }
-                catch (Exception e)//show exception message if the user enter invalid input
-                {
-                    Console.WriteLine(e.Message);
-
-
-                    Console.WriteLine("Invalid Choice! Try again.");
-                    Console.WriteLine("Press any key  "); //ask user to press any key to continue
-                    Console.ReadLine(); //read the user inputConsole.ReadLine();
-                }
-
-            }
+        static void DisplayWelcomeMessage()
+        {
+            Console.WriteLine("Welcome to the Airline Reservation System!");
+            Console.WriteLine("   ");
         }
 
         public static void AddFLight(string flightCode, string fromCity, string toCity, DateTime departureTime, int duration)
