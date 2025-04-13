@@ -66,9 +66,13 @@ namespace AirlineReservationConsoleSystem
             });
         }
 
-        public static void FindFlightByCode()
+        static void DisplayAllFlights()
         {
-
+            Console.WriteLine("\nAvailable Flights:");
+            foreach (var flight in flights)
+            {
+                Console.WriteLine($"{flight.FlightCode}: {flight.FromCity} -> {flight.ToCity}, Departs at {flight.DepartureTime}, Duration: {flight.Duration} min");
+            }
         }
 
         public static void UpdateFlightDeparture()
