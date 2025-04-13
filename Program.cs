@@ -99,9 +99,23 @@ namespace AirlineReservationConsoleSystem
             }
         }
 
-        public static void BookFligh()
+        static void CancelFlightBooking(out string passengerName)
         {
+            Console.Write("Enter booking ID to cancel: ");
+            string bookingID = Console.ReadLine();
 
+            var booking = bookings.Find(b => b.BookingID == bookingID);
+            if (booking != null)
+            {
+                passengerName = booking.PassengerName;
+                bookings.Remove(booking);
+                Console.WriteLine($"Booking for {passengerName} canceled.");
+            }
+            else
+            {
+                passengerName = string.Empty;
+                Console.WriteLine("Booking ID not found.");
+            }
         }
 
         public static void ValidateFlightCode()
