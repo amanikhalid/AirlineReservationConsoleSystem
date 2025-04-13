@@ -118,10 +118,25 @@ namespace AirlineReservationConsoleSystem
             }
         }
 
-        public static void ValidateFlightCode()
+        static void BookFlight(string passengerName, string flightCode = "Default001")
         {
+            if (!FindByCode(flightCode))
+            {
+                Console.WriteLine("Flight not found. Booking failed.");
+                return;
+            }
 
+            string bookingID = GenerateBookingID(passengerName);
+            bookings.Add(new Booking
+            {
+                PassengerName = passengerName,
+                FlightCode = flightCode,
+                BookingID = bookingID
+            });
+
+            Console.WriteLine($"Booking successful! Booking ID: {bookingID}");
         }
+        
 
         public static void GenerateBookingID()
         {
