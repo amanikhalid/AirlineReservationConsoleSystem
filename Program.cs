@@ -37,9 +37,21 @@ namespace AirlineReservationConsoleSystem
             Console.WriteLine("   ");
         }
 
-        public static void AddFLight(string flightCode, string fromCity, string toCity, DateTime departureTime, int duration)
+        static int ShowMainMenu()
         {
+            Console.WriteLine("\n1. Book Flight");
+            Console.WriteLine("2. Cancel Flight");
+            Console.WriteLine("3. View All Flights");
+            Console.WriteLine("4. View Flight Details");
+            Console.WriteLine("5. Search Bookings by Destination");
+            Console.WriteLine("6. Update Flight Departure Time");
+            Console.WriteLine("7. Calculate Fare");
+            Console.WriteLine("8. Exit");
+            Console.Write("Enter choice: ");
 
+            if (int.TryParse(Console.ReadLine(), out int choice))
+                return choice;
+            return -1;
         }
 
         public static void DisplayAllFlights()
