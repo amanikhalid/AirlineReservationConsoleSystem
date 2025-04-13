@@ -54,9 +54,16 @@ namespace AirlineReservationConsoleSystem
             return -1;
         }
 
-        public static void DisplayAllFlights()
+        static void AddFlight(string flightCode, string fromCity, string toCity, DateTime departureTime, int duration)
         {
-
+            flights.Add(new Flight
+            {
+                FlightCode = flightCode,
+                FromCity = fromCity,
+                ToCity = toCity,
+                DepartureTime = departureTime,
+                Duration = duration
+            });
         }
 
         public static void FindFlightByCode()
