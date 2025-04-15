@@ -291,6 +291,67 @@ namespace AirlineReservationConsoleSystem
                 }
             }
         }
+
+        public static void ShowUserMenu2()
+        {
+            Console.WriteLine("Welcome User");
+
+            List<string> userMenuOptions = new List<string>
+    {
+        "Book Flight",
+        "Cancel Flight Booking",
+        "View Flights",
+        "Search Bookings by Destination",
+        "Exit to Main Menu"
+    };
+
+            while (true)
+            {
+                Console.WriteLine("\nUser Menu:");
+
+                
+                for (int i = 0; i < userMenuOptions.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {userMenuOptions[i]}");
+                }
+
+                if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > userMenuOptions.Count)
+                {
+                    Console.WriteLine("Invalid Option. Please try again.");
+                    continue;
+                }
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter Passenger Name:");
+                        string passengerName = Console.ReadLine();
+                        string generatedPassengerNamed = GenerateBookingID(passengerName);
+                        BookFlight(generatedPassengerNamed);
+                        break;
+
+                    case 2:
+                        string passengerToCancel;
+                        CancelFlightBooking(out passengerToCancel);
+                        Console.WriteLine($"Booking for {passengerToCancel} has been canceled.");
+                        break;
+
+                    case 3:
+                        DisplayAllFlights();
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Enter Destination City:");
+                        string toCity = Console.ReadLine();
+                        SearchBookingsByDestination(toCity);
+                        break;
+
+                    case 5:
+                        return;
+                }
+            }
+        }
+
         public static void DisplayWelcomeMessage()
         {
             Console.WriteLine("Welcome to Airline Reservation System");
