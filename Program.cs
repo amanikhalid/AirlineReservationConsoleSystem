@@ -55,6 +55,46 @@ namespace AirlineReservationConsoleSystem
             }
         }
 
+        static void Main2(string[] args)
+        {
+            DisplayWelcomeMessage();
+
+            List<string> roles = new List<string> { "Admin", "User", "Exit" };
+
+            while (true)
+            {
+                Console.WriteLine("Select Role:");
+
+                
+                for (int i = 0; i < roles.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {roles[i]}");
+                }
+
+               
+                if (!int.TryParse(Console.ReadLine(), out int roleChoice) || roleChoice < 1 || roleChoice > roles.Count)
+                {
+                    Console.WriteLine("Invalid Option. Please try again.");
+                    continue;
+                }
+
+                
+                switch (roleChoice)
+                {
+                    case 1:
+                        ShowAdminMenu();
+                        break;
+                    case 2:
+                        ShowUserMenu();
+                        break;
+                    case 3:
+                        ExitApplication();
+                        return;
+                }
+            }
+        }
+
+
         public static void ShowAdminMenu()
         {
             Console.WriteLine("Welcome Admin");
