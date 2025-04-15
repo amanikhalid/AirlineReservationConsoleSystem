@@ -163,6 +163,92 @@ namespace AirlineReservationConsoleSystem
             }
         }
 
+        public static void ShowAdminMenu2()
+        {
+            Console.WriteLine("Welcome Admin");
+
+            List<string> adminMenuOptions = new List<string>
+    {
+        "Add Flight",
+        "View All Flights",
+        "Update Flight Departure Time",
+        "Exit to Main Menu"
+    };
+
+            while (true)
+            {
+                Console.WriteLine("\nAdmin Menu:");
+
+                
+                for (int i = 0; i < adminMenuOptions.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {adminMenuOptions[i]}");
+                }
+
+                if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > adminMenuOptions.Count)
+                {
+                    Console.WriteLine("Invalid Option. Please try again.");
+                    continue;
+                }
+
+                switch (choice)
+                {
+                    case 1:
+                        try
+                        {
+                            Console.WriteLine("Add Flight code:");
+                            string flightCode = Console.ReadLine();
+                            Console.WriteLine("Add From city:");
+                            string fromCity = Console.ReadLine();
+                            Console.WriteLine("Add To city:");
+                            string toCity = Console.ReadLine();
+                            Console.WriteLine("Add Departure Time (e.g., 2024-04-10 12:03):");
+                            DateTime departureTime = DateTime.Parse(Console.ReadLine());
+                            Console.WriteLine("Add Duration (in hours):");
+                            int duration = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Enter Base Price for the Flight:");
+                            int basePrice = int.Parse(Console.ReadLine());
+
+                            AddFlight(flightCode, fromCity, toCity, departureTime, duration, basePrice);
+                        }
+                        catch (FormatException ex)
+                        {
+                            Console.WriteLine($"Invalid input: {ex.Message}");
+                        }
+                        break;
+
+                    case 2:
+                        DisplayAllFlights();
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Enter Flight Code to Update:");
+                        string updateFlightCode = Console.ReadLine();
+
+                        if (ValidateFlightCode(updateFlightCode))
+                        {
+                            for (int i = 0; i < FlightCounter; i++)
+                            {
+                                if (flightCodeArray[i] == updateFlightCode)
+                                {
+                                    UpdateFlightDepature(ref departureTimeArray[i]);
+                                    Console.WriteLine("Departure time updated successfully.");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Flight not found.");
+                        }
+                        break;
+
+                    case 4:
+                        return;
+                }
+            }
+        }
+
+
         public static void ShowUserMenu()
         {
             Console.WriteLine("Welcome User");
