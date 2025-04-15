@@ -15,6 +15,16 @@ namespace AirlineReservationConsoleSystem
         static string[] GenerateBookingIDArray = new string[100];
         static int[] basePriceArray = new int[100];
 
+         static List<string> flightCodeArray2 = new List<string>();
+        static List<string> fromCityArray2 = new List<string>();
+        static List<string> toCityArray2 = new List<string>();
+        static List<DateTime> departureTimeArray2 = new List<DateTime>();
+        static List<int> durationArray2 = new List<int>();
+        static List<int> FlightCounter2 = new List<int>();
+        static List<string> passengerNameArray2 = new List<string>();
+        static List<string> GenerateBookingIDArray2 = new List<string>();
+        static List<int> basePriceArray2 = new List<int>();
+
         static void Main(string[] args)
         {
             DisplayWelcomeMessage();
